@@ -101,7 +101,8 @@
 	typedef struct _LinkedListHeader
 	{
 		int linkedListLength;
-		pLNode const firstNode;
+		pLNode firstNode;
 		pLNode currentNode;
 	} LinkedListHeader;
 
+### (2). 单链表相关算法
