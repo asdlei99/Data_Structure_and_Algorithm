@@ -1,4 +1,4 @@
-// DataStructure.cpp : Defines the entry point for the console application.
+// LinkedListDemo.cpp : 数据结构——链表的demo.
 //
 
 #include "stdafx.h"
