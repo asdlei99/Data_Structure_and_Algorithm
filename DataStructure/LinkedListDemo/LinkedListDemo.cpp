@@ -2,10 +2,16 @@
 //
 
 #include "stdafx.h"
+#include "LinkedList.h"
 
+int array[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	LinkedList *list = CreateLinkedListFromArray(array, sizeof(array)/sizeof(int));
+
+	FreeLindedList(&list);
+
 	return 0;
 }
 

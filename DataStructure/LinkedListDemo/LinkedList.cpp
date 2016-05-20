@@ -22,8 +22,11 @@ LinkedList* CreateLinkedListFromArray(const int *arr, int len)
 		{
 			list->firstNode = list->currentNode = node; //设置第一个节点
 		}
-
-		list->currentNode->nextNode = node;
+		else
+		{
+			list->currentNode->nextNode = node;
+			list->currentNode = list->currentNode->nextNode; 
+		}
 	}
 
 	return list;
@@ -46,5 +49,6 @@ void FreeLindedList(LinkedList** List)
 		thisNode = nextNode;
 	}
 	free(thisNode);
-	free(LList);
+	free(LList);	
+	*List = NULL;
 }
