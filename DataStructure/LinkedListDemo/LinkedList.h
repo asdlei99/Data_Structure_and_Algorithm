@@ -53,10 +53,31 @@ void ShowLinkedList(const LinkedList *List);
   Function:		GetListNodeValueAt
   Description:	显示一个单链表结构中某个节点的负载元素值
   Input:		(in)LList: 希望显示的单链表结构
-				(int)idx：希望显示的节点的索引
+				(in)idx：希望显示的节点的索引
   Output:		无
   Return:		无
 *************************************************/
 void GetListNodeValueAt(const LinkedList *List, unsigned int pos);
+
+/*************************************************
+  Function:		InsertNodeAt
+  Description:	在一个单链表结构中的指定位置插入一个节点
+  Input:		(in/out)LList: 希望显示的单链表结构
+				(in)idx：希望显示的节点的索引
+				(in)value: 插入节点的负载元素值
+  Output:		无
+  Return:		无
+*************************************************/
+void InsertNodeAt(LinkedList *List, unsigned int pos, int value);
+
+/*************************************************
+  Function:		DeleteNodeAt
+  Description:	删除一个单链表结构中的指定位置的节点
+  Input:		(in/out)LList: 希望删除节点的单链表结构
+				(in)idx：希望删除的节点的索引
+  Output:		无
+  Return:		无
+*************************************************/
+void DeleteNodeAt(LinkedList *List, unsigned int pos);
 
 #endif

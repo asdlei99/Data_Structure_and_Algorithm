@@ -12,7 +12,27 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	ShowLinkedList(list);
 
-	GetListNodeValueAt(list, 5);
+//	GetListNodeValueAt(list, 5);
+
+	InsertNodeAt(list, 0, -5);
+
+	ShowLinkedList(list);
+
+	InsertNodeAt(list, 5, -10);
+
+	ShowLinkedList(list);
+
+	DeleteNodeAt(list, 0);
+
+	ShowLinkedList(list);
+
+	DeleteNodeAt(list, 5);
+
+	ShowLinkedList(list);
+
+	InsertNodeAt(list, 20, -10);
+
+	DeleteNodeAt(list, 15);
 
 	FreeLinkedList(&list);
 

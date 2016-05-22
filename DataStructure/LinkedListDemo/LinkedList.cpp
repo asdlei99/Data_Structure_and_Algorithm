@@ -61,6 +61,8 @@ void ShowLinkedList(const LinkedList *List)
 		printf("Error: list is null.\n");
 		return;
 	}
+
+	printf("**************************List Members**********************\n");
 	int len = List->linkedListLength;
 	pLNode node = List->firstNode;
 
@@ -92,4 +94,82 @@ void GetListNodeValueAt(const LinkedList *List, unsigned int pos)
 	}
 
 	printf("Value at %d : %d\n", pos, node->value);
+}
+
+//在一个单链表结构中的指定位置插入一个节点
+void InsertNodeAt(LinkedList *List, unsigned int pos, int value)
+{
+	if (!List)
+	{
+		printf("Error: list is null.\n");
+		return;
+	}
+	if (pos > List->linkedListLength)
+	{
+		printf("Error: index value exceeds the list length.\n");
+		return;
+	}
+
+	if (pos == 0)	//插入到第一个位置
+	{
+		pLNode newNode = (pLNode)malloc(sizeof(LNode));
+		newNode->value = value;
+
+		newNode->nextNode = List->firstNode;
+		List->firstNode = newNode;
+	}
+	else
+	{
+		pLNode node = List->firstNode;
+		for (unsigned int idx = 0; idx < pos - 1; idx++)	//遍历链表到指定位置的前一个节点
+		{
+			node = node->nextNode;
+		}
+
+		pLNode newNode = (pLNode)malloc(sizeof(LNode));
+		newNode->value = value;
+		newNode->nextNode = node->nextNode;
+		node->nextNode = newNode;
+	}	
+
+	List->linkedListLength++;
+}
+
+//删除一个单链表结构中的指定位置的节点
+void DeleteNodeAt(LinkedList *List, unsigned int pos)
+{
+	pLNode nodeToDel = NULL;
+
+	if (!List)
+	{
+		printf("Error: list is null.\n");
+		return;
+	}
+	if (pos > List->linkedListLength)
+	{
+		printf("Error: index value exceeds the list length.\n");
+		return;
+	}
+
+	if (pos == 0)												//删除第一个节点
+	{
+		nodeToDel = List->firstNode;
+		List->firstNode = nodeToDel->nextNode;
+		free(nodeToDel);
+		nodeToDel = NULL;
+	}
+	else
+	{
+		pLNode node = List->firstNode;
+		for (unsigned int idx = 0; idx < pos - 1; idx++)	//遍历链表到指定位置的前一个节点
+		{
+			node = node->nextNode;
+		}
+		nodeToDel = node->nextNode;
+		node->nextNode = nodeToDel->nextNode;
+		free(nodeToDel);
+		nodeToDel = NULL;
+	}
+	
+	List->linkedListLength--;
 }
