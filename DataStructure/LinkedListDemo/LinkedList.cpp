@@ -52,3 +52,16 @@ void FreeLinkedList(LinkedList** List)
 	free(LList);	
 	*List = NULL;
 }
+
+//显示一个单链表结构中所有的节点的负载元素值
+void ShowLinkedList(const LinkedList &List)
+{
+	int len = List.linkedListLength;
+	pLNode node = List.firstNode;
+
+	for (int idx = 0; idx < len; idx++)
+	{
+		printf("Node %d : %d\n", idx, node->value);
+		node = node->nextNode;
+	}
+}

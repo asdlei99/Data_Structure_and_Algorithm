@@ -40,4 +40,13 @@ LinkedList* CreateLinkedListFromArray(const int *arr, int len);
 *************************************************/
 void FreeLinkedList(LinkedList** LList);
 
+/*************************************************
+  Function:		ShowLinkedList
+  Description:	显示一个单链表结构中所有的节点的负载元素值
+  Input:		(in)LList: 希望显示的单链表结构
+  Output:		无
+  Return:		无
+*************************************************/
+void ShowLinkedList(const LinkedList &List);
+
 #endif
