@@ -16,7 +16,7 @@ typedef struct _LNode
 ********************/
 typedef struct _LinkedListHeader
 {
-	int linkedListLength;	//单链表的总长度
+	unsigned int linkedListLength;	//单链表的总长度
 	pLNode firstNode;	//当前单链表的首节点指针
 	pLNode currentNode;		//单链表当前正在指向的指针
 } LinkedList;
@@ -47,6 +47,16 @@ void FreeLinkedList(LinkedList** LList);
   Output:		无
   Return:		无
 *************************************************/
-void ShowLinkedList(const LinkedList &List);
+void ShowLinkedList(const LinkedList *List);
+
+/*************************************************
+  Function:		GetListNodeValueAt
+  Description:	显示一个单链表结构中某个节点的负载元素值
+  Input:		(in)LList: 希望显示的单链表结构
+				(int)idx：希望显示的节点的索引
+  Output:		无
+  Return:		无
+*************************************************/
+void GetListNodeValueAt(const LinkedList *List, unsigned int pos);
 
 #endif

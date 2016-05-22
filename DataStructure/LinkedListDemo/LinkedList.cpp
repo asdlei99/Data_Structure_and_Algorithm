@@ -54,14 +54,42 @@ void FreeLinkedList(LinkedList** List)
 }
 
 //显示一个单链表结构中所有的节点的负载元素值
-void ShowLinkedList(const LinkedList &List)
+void ShowLinkedList(const LinkedList *List)
 {
-	int len = List.linkedListLength;
-	pLNode node = List.firstNode;
+	if (!List)
+	{
+		printf("Error: list is null.\n");
+		return;
+	}
+	int len = List->linkedListLength;
+	pLNode node = List->firstNode;
 
 	for (int idx = 0; idx < len; idx++)
 	{
 		printf("Node %d : %d\n", idx, node->value);
 		node = node->nextNode;
 	}
+}
+
+//显示一个单链表结构中某个节点的负载元素值
+void GetListNodeValueAt(const LinkedList *List, unsigned int pos)
+{
+	if (!List)
+	{
+		printf("Error: list is null.\n");
+		return;
+	}
+	if (pos > List->linkedListLength)
+	{
+		printf("Error: index value exceeds the list length.\n");
+		return;
+	}
+
+	pLNode node = List->firstNode;
+	for (unsigned int idx = 0; idx < pos; idx++)
+	{
+		node = node->nextNode;
+	}
+
+	printf("Value at %d : %d\n", pos, node->value);
 }

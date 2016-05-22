@@ -10,7 +10,9 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	LinkedList *list = CreateLinkedListFromArray(array, sizeof(array)/sizeof(int));
 
-	ShowLinkedList(*list);
+	ShowLinkedList(list);
+
+	GetListNodeValueAt(list, 5);
 
 	FreeLinkedList(&list);
 
