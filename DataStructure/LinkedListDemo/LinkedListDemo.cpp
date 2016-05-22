@@ -10,7 +10,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	LinkedList *list = CreateLinkedListFromArray(array, sizeof(array)/sizeof(int));
 
-	FreeLindedList(&list);
+	FreeLinkedList(&list);
 
 	return 0;
 }

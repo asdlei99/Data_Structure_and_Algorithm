@@ -38,6 +38,6 @@ LinkedList* CreateLinkedListFromArray(const int *arr, int len);
   Output:		нч
   Return:		нч
 *************************************************/
-void FreeLindedList(LinkedList** LList);
+void FreeLinkedList(LinkedList** LList);
 
 #endif

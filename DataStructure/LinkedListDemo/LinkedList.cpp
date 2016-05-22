@@ -33,7 +33,7 @@ LinkedList* CreateLinkedListFromArray(const int *arr, int len)
 }
 
 //释放一个单链表的节点和单链表本身
-void FreeLindedList(LinkedList** List)
+void FreeLinkedList(LinkedList** List)
 {
 	LinkedList *LList = *List;
 	if (!LList)
