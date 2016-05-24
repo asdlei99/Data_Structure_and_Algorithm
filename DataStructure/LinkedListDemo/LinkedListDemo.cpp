@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "LinkedList.h"
 #include "CircLinkedList.h"
+#include "DualLinkedList.h"
 
 int array[11] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
@@ -47,9 +48,18 @@ void CircLinkedListTest()
 	FreeCircLinkedList(&list);
 }
 
+void DualListTest()
+{
+	DualList *list = CreateDualListFromArray(array, sizeof(array)/sizeof(int));
+
+	ShowDualList(list);
+
+	FreeDualList(&list);
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
-	CircLinkedListTest();
+	DualListTest();
 
 	return 0;
 }

@@ -32,7 +32,7 @@ typedef struct _LinkedListHeader
 LinkedList* CreateLinkedListFromArray(const int *arr, int len);
 
 /*************************************************
-  Function:		CreateLinkedListFromArray
+  Function:		FreeLinkedList
   Description:	释放一个单链表的节点和单链表本身
   Input:		(in/out)LList: 希望释放的单链表结构
   Output:		无
