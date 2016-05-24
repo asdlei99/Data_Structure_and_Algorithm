@@ -163,3 +163,48 @@
 		*List = NULL;
 	}
 
+## 2、循环链表
+
+循环链表顾名思义，是指其中存在循环结构的链表。事实上，循环链表的实现形式同单链表是相似的，唯一的区别在于其末尾的节点的后继不是空指针，而是指向头结点。通过这种方式形成一个闭环，这样，从链表的任何一个节点开始遍历都可以访问到其他所有节点。
+
+循环链表的节点定义：
+
+	typedef struct _CLNode CLNode;
+	typedef struct _CLNode
+	{
+		long value;			//循环链表节点中的有效负载值
+		CLNode *nextNode;	//循环链表节点中的指针域，指向下一节点
+	}CLNode, *pCLNode;
+
+实际上，可以看出循环链表节点的定义与单链表是相同的。在使用时，需注意判断循环链表是否到达结束的条件不是当前节点的后继是否为NULL，而是其后继是否指向头结点。比如在遍历输出循环链表元素中的循环判断条件：
+
+	//显示一个循环链表结构中所有的节点的负载元素值
+	void ShowCircLinkedList(const CircLinkedList *cList)
+	{
+		if (!cList)
+		{
+			printf("Error: Null CircLinkedList\n");
+			return;
+		}
+		int idx = 0;
+		pCLNode thisNode = cList->firstNode;
+		while(thisNode->nextNode != cList->firstNode)
+		{
+			printf("Node %d: %d\n",idx++, thisNode->value);
+			thisNode = thisNode->nextNode;
+		}
+		printf("Node %d: %d\n",idx++, thisNode->value);
+	}
+
+## 3、双向链表
+
+链表的第三种形式是双向链表。双向链表的节点结构同单链表和循环链表不同，后两者都只有一个指针域，只能指向一个后继，而双向链表的节点包含两个指针域，分别指向当前节点的前驱和后继两个元素。双向链表的节点定义如下：
+
+	typedef struct _DualNode DualNode;
+	typedef struct _DualNode
+	{
+		long value;			//双向链表节点中的有效负载值
+		DualNode *nextNode;	//双向链表节点中的指针域，指向下一节点
+		DualNode *prevNode; //双向链表节点中的指针域，指向前一节点
+	}DualNode, *pDualNode;
+

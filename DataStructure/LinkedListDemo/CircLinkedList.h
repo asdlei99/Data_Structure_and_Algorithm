@@ -7,8 +7,8 @@
 typedef struct _CLNode CLNode;
 typedef struct _CLNode
 {
-	long value;			//单链表节点中的有效负载值
-	CLNode *nextNode;	//单链表节点中的指针域，指向下一节点
+	long value;			//循环链表节点中的有效负载值
+	CLNode *nextNode;	//循环链表节点中的指针域，指向下一节点
 }CLNode, *pCLNode;
 
 /********************
