@@ -3,16 +3,17 @@
 
 #include "stdafx.h"
 #include "LinkedList.h"
+#include "CircLinkedList.h"
 
 int array[11] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-int _tmain(int argc, _TCHAR* argv[])
+void LinkedListTest()
 {
 	LinkedList *list = CreateLinkedListFromArray(array, sizeof(array)/sizeof(int));
 
 	ShowLinkedList(list);
 
-//	GetListNodeValueAt(list, 5);
+	//	GetListNodeValueAt(list, 5);
 
 	InsertNodeAt(list, 0, -5);
 
@@ -35,6 +36,20 @@ int _tmain(int argc, _TCHAR* argv[])
 	DeleteNodeAt(list, 15);
 
 	FreeLinkedList(&list);
+}
+
+void CircLinkedListTest()
+{
+	CircLinkedList *list = CreateCircLinkedListFromArray(array, sizeof(array)/sizeof(int));
+
+	ShowCircLinkedList(list);
+
+	FreeCircLinkedList(&list);
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	CircLinkedListTest();
 
 	return 0;
 }
