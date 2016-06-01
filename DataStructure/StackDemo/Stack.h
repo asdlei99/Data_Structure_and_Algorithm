@@ -1,8 +1,6 @@
 #ifndef _STACK_H_
 #define _STACK_H_
 
-const unsigned int c_defaultStackSize = 10;
-const unsigned int c_defaultStackIncrement = 5;
 
 /********************
 	ջ�ṹ

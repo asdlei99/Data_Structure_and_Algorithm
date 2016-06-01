@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "Stack.h"
 
+const unsigned int c_defaultStackSize = 10;
+const unsigned int c_defaultStackIncrement = 5;
+
 //初始化一个空栈
 void Init_stack(Stack &s)
 {

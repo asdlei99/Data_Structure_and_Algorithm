@@ -242,3 +242,108 @@
 		return dlist;
 	}
 
+--- 
+
+# 第三章 · 栈和队列
+
+栈和队列分别都是极为常见的线性数据结构。这两种结构都可以看作是一种特殊的线性表，因为其存储结构依赖于线性表的实现，而其操作再线性表的基础上增加了一些限制。
+
+## 1. 栈 
+
+### (1). 栈的定义
+
+栈是一种特殊的线性表，这种线性表只允许在尾部进行元素的添加和删除操作。栈中添加和删除元素的位置，即表的尾部，称为“栈顶”，表的头部称为“栈底”。栈中元素的出入按照“先入后出”的顺序执行，即第一个压入栈中的元素最后被弹出。
+
+一个栈可用如下方式定义：
+	
+	/********************
+		栈结构
+	********************/
+	typedef struct _Stack
+	{
+		unsigned stackSize;		//栈中当前元素个数
+		unsigned stackCapacity;	//栈的总容量
+		int		*stackBotton;
+		int		*stackTop;
+	} Stack;
+
+### (2). 栈的操作
+
+首先我们需要定义两个常量，分别表示栈的初始大小，以及增加栈空间时的大小：
+
+	const unsigned int c_defaultStackSize = 10;
+	const unsigned int c_defaultStackIncrement = 5;
+
+初始化一个空栈的方法：
+	
+	//初始化一个空栈
+	void Init_stack(Stack &s)
+	{
+		s.stackSize = 0;
+		s.stackCapacity = c_defaultStackSize;
+		s.stackBotton = (int *)malloc(s.stackCapacity * sizeof(int));
+		s.stackTop = s.stackBotton;
+		printf("Stack initialized, default capacity = %d.\n", s.stackCapacity);
+	}
+
+释放当前栈：
+
+	//释放一个栈
+	void Destroy_stack(Stack &s)
+	{
+		free(s.stackBotton);
+		s.stackSize = s.stackCapacity = 0;
+		s.stackBotton = s.stackTop = NULL;
+	}
+
+遍历栈中元素：
+	
+	//遍历一个栈中所有成员
+	void Tranvers_stack(const Stack &s)
+	{
+		printf("Stack elements:\n");
+		for (int idx = 0; idx < s.stackSize; idx++)
+		{
+			printf("%d\n",*(s.stackBotton + idx));
+		}
+		printf("\n");
+	}
+
+从栈顶弹出元素：
+
+	//从栈s中弹出栈顶元素
+	int Pop(Stack &s)
+	{
+		if (s.stackSize == 0)
+		{
+			printf("Stack is empty.\n");
+			return -32767;
+		}
+	
+		int ret = *(--s.stackTop);	
+		s.stackSize--;
+		return ret;
+	}
+
+对于将新元素压栈的操作，需要考虑的是如果当前的栈容量已经到达上限，那么需要重新分配栈的内存空间：
+	
+	//将元素val压入栈s中
+	void Push(Stack &s, int val)
+	{
+		if (s.stackSize >= s.stackCapacity)
+		{
+			//当前栈已满
+			void *temp = realloc(s.stackBotton, (s.stackCapacity += c_defaultStackIncrement) * sizeof (int));
+			if (!temp)
+			{
+				Destroy_stack(s);
+				return;
+			}
+			s.stackBotton = (int *)temp;
+			printf("Stack capacity extended, new capacity: %d\n", s.stackCapacity);
+		}
+			
+		*(s.stackTop) = val;
+		s.stackSize++;
+		s.stackTop++;
+	}
