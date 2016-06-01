@@ -208,3 +208,37 @@
 		DualNode *prevNode; //双向链表节点中的指针域，指向前一节点
 	}DualNode, *pDualNode;
 
+双向链表在涉及到遍历等操作时只针对一个方向进行操作，那么与单链表并无实质的差异。当涉及到插入、删除等操作时，需要同时修改两个方向上的指针。如创建双向链表的方法如下：
+
+	//从给定的int型数组创建一个双向链表
+	DualList* CreateDualListFromArray(const int *arr, int len)
+	{
+		if (len <= 0)
+		{
+			return NULL;
+		}
+	
+		DualList *dlist = (DualList*)malloc(sizeof(DualList));
+		dlist->linkedListLength = len;
+		
+		for (int idx = 0; idx < len; idx++)
+		{
+			pDualNode node = (pDualNode)malloc(sizeof(DualNode));
+			node->value = arr[idx];
+			node->prevNode = node->nextNode = NULL;
+	
+			if (idx == 0)
+			{
+				dlist->firstNode = dlist->currentNode = node;
+			} 
+			else
+			{
+				dlist->currentNode->nextNode = node;
+				node->prevNode = dlist->currentNode;
+				dlist->currentNode = dlist->currentNode->nextNode;
+			}
+		}
+	
+		return dlist;
+	}
+
