@@ -21,7 +21,7 @@ void Push_queue(int value, Queue &queue)
 	else
 	{
 		queue.queueRear->nextNode = node;
-		queue.queueRear->nextNode = queue.queueRear;
+		queue.queueRear = queue.queueRear->nextNode;
 	}
 
 	queue.length++;
@@ -40,5 +40,20 @@ int Pop_queue(Queue &queue)
 	queue.queueHead = queue.queueHead->nextNode;
 	free(head);
 
+	queue.length--;
 	return retVal;
+}
+
+void Empty_queue(Queue &queue)
+{
+	pQueueNode thisNode = NULL;
+
+	while(queue.queueHead != queue.queueRear)
+	{
+		thisNode = queue.queueHead;
+		queue.queueHead = queue.queueHead->nextNode;
+		free(thisNode);
+	}
+	queue.queueHead = queue.queueRear = NULL;
+	queue.length = 0;
 }

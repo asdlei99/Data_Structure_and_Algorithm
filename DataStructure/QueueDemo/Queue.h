@@ -21,4 +21,6 @@ void Push_queue(int value, Queue &queue);
 
 int Pop_queue(Queue &queue);
 
+void Empty_queue(Queue &queue);
+
 #endif
