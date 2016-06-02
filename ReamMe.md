@@ -347,3 +347,92 @@
 		s.stackSize++;
 		s.stackTop++;
 	}
+
+## 2. 队列
+
+### (1). 队列的定义
+
+同栈类似，队列也是一种线性结构。队列与栈的不同点在于，后者只能在线性表的一端（即栈顶）增删元素，而前者则是在一端（队尾）添加元素，另一端（队首）删除元素。由于这种特性，一个队列中元素所占据的内存通常不是固定的，因此队列不适合使用顺序表存储，而更适用于链表结构来保存。
+
+定义一个队列结构，一般需要包含队列长度、队列头和队列尾三个值：
+	
+	typedef struct _QueueNode *pQueueNode;
+	typedef struct _QueueNode
+	{
+		int value;
+		pQueueNode nextNode;
+	} QueueNode, *pQueueNode;
+	
+	typedef struct _Queue
+	{
+		unsigned int length;
+		pQueueNode queueHead;
+		pQueueNode queueRear;
+	} Queue;
+
+### (2). 队列的操作
+
+初始化一个空的队列：
+	
+	void Init_queue(Queue &queue)
+	{
+		queue.length = 0;
+		queue.queueHead = queue.queueRear = NULL;
+	}
+
+清空队列：
+	
+	void Empty_queue(Queue &queue)
+	{
+		pQueueNode thisNode = NULL;
+	
+		while(queue.queueHead != queue.queueRear)
+		{
+			thisNode = queue.queueHead;
+			queue.queueHead = queue.queueHead->nextNode;
+			free(thisNode);
+		}
+		queue.queueHead = queue.queueRear = NULL;
+		queue.length = 0;
+	}
+
+从队列尾向队列中添加数据：
+	
+	void Push_queue(int value, Queue &queue)
+	{
+		pQueueNode node = (pQueueNode)malloc(sizeof(QueueNode));
+		node->value = value;
+		node->nextNode = NULL;
+	
+		if (queue.length == 0)
+		{
+			//空队列添加第一个节点
+			queue.queueRear = queue.queueHead = node;
+		}
+		else
+		{
+			queue.queueRear->nextNode = node;
+			queue.queueRear = queue.queueRear->nextNode;
+		}
+	
+		queue.length++;
+	}
+
+从队列头取出数据：
+	
+	int Pop_queue(Queue &queue)
+	{
+		if (queue.length == 0)
+		{
+			printf("Error: cannot pop from empty queue\n");
+			exit(-1);
+		}
+	
+		pQueueNode head = queue.queueHead;
+		int retVal = head->value;
+		queue.queueHead = queue.queueHead->nextNode;
+		free(head);
+	
+		queue.length--;
+		return retVal;
+	}
