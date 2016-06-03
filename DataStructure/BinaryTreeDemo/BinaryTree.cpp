@@ -55,3 +55,69 @@ int Add_right_children_to_node_with_value(BinTreeNode *currentNode, int value)
 
 	return 0;
 }
+
+BinTreeNode * Get_node_parent(BinTreeNode *node)
+{
+	return node->parentNode;
+}
+
+BinTreeNode * Get_node_left_children(BinTreeNode *node)
+{
+	return node->leftSubTree;
+}
+
+BinTreeNode * Get_node_right_children(BinTreeNode *node)
+{
+	return node->rightSubTree;
+}
+
+static void pre_order_start_node(BinTreeNode *node)
+{
+	if (!node)
+	{
+		return;
+	}
+	printf("%d ", node->value);
+	pre_order_start_node(node->leftSubTree);
+	pre_order_start_node(node->rightSubTree);
+}
+
+void Pre_order_tranverse(BinaryTree &tree)
+{
+	pre_order_start_node(tree.rootNode);
+	printf("\n");
+}
+
+static void in_order_start_node(BinTreeNode *node)
+{
+	if (!node)
+	{
+		return;
+	}
+	in_order_start_node(node->leftSubTree);
+	printf("%d ", node->value);
+	in_order_start_node(node->rightSubTree);
+}
+
+void In_order_tranverse(BinaryTree &tree)
+{
+	in_order_start_node(tree.rootNode);
+	printf("\n");
+}
+
+static void post_order_start_node(BinTreeNode *node)
+{
+	if (!node)
+	{
+		return;
+	}
+	post_order_start_node(node->leftSubTree);
+	post_order_start_node(node->rightSubTree);
+	printf("%d ", node->value);
+}
+
+void Post_order_tranverse(BinaryTree &tree)
+{
+	post_order_start_node(tree.rootNode);
+	printf("\n");
+}
