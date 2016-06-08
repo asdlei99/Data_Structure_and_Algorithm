@@ -75,30 +75,30 @@ static void select_sort(int *arr, int len)
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	int arr[1000];// = {5,3,1,6,8,7,4,2,9,0};
-	int arr2[1000];
+	int arr[10] = {5,10,3,1,6,8,7,4,2,9};
+	int arr2[10];
 //	fill_array(arr, sizeof(arr)/sizeof(int));
-//	show_array(arr, sizeof(arr)/sizeof(int));
+	show_array(arr, sizeof(arr)/sizeof(int));
 
 //	bubble_sort(arr, sizeof(arr)/sizeof(int));
 //	select_sort(arr, sizeof(arr)/sizeof(int));
-// 	Quick_sort(arr, sizeof(arr)/sizeof(int));
-// 	show_array(arr, sizeof(arr)/sizeof(int));
+	Quick_sort(arr, sizeof(arr)/sizeof(int));
+	show_array(arr, sizeof(arr)/sizeof(int));
 
-	for (int test = 0; test < 5000; test++)
-	{
-		fill_array(arr, sizeof(arr)/sizeof(int));
-		memcpy_s(arr2, sizeof(arr2), arr, sizeof(arr));
-		bubble_sort(arr, sizeof(arr)/sizeof(int));
-		Quick_sort(arr2, sizeof(arr)/sizeof(int));
-		if (memcmp(arr, arr2, sizeof(arr)/sizeof(int)))
-		{
-			printf("Quick sort failed:\n");
-			show_array(arr, sizeof(arr)/sizeof(int));
-			show_array(arr2, sizeof(arr)/sizeof(int));
-			break;
-		}
-	}
+// 	for (int test = 0; test < 5000; test++)
+// 	{
+// 		fill_array(arr, sizeof(arr)/sizeof(int));
+// 		memcpy_s(arr2, sizeof(arr2), arr, sizeof(arr));
+// 		bubble_sort(arr, sizeof(arr)/sizeof(int));
+// 		Quick_sort(arr2, sizeof(arr)/sizeof(int));
+// 		if (memcmp(arr, arr2, sizeof(arr)/sizeof(int)))
+// 		{
+// 			printf("Quick sort failed:\n");
+// 			show_array(arr, sizeof(arr)/sizeof(int));
+// 			show_array(arr2, sizeof(arr)/sizeof(int));
+// 			break;
+// 		}
+// 	}
 	printf("Quick sort succeeded.\n");
 	return 0;
 }
