@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "QuickSorting.h"
+#include "MergeSorting.h"
 
 static void show_array(int *arr, int len)
 {
@@ -76,13 +77,14 @@ static void select_sort(int *arr, int len)
 int _tmain(int argc, _TCHAR* argv[])
 {
 	int arr[10] = {5,10,3,1,6,8,7,4,2,9};
-	int arr2[10];
+//	int arr2[10];
 //	fill_array(arr, sizeof(arr)/sizeof(int));
 	show_array(arr, sizeof(arr)/sizeof(int));
 
+	Merge_sort(arr, sizeof(arr)/sizeof(int));
 //	bubble_sort(arr, sizeof(arr)/sizeof(int));
 //	select_sort(arr, sizeof(arr)/sizeof(int));
-	Quick_sort(arr, sizeof(arr)/sizeof(int));
+//	Quick_sort(arr, sizeof(arr)/sizeof(int));
 	show_array(arr, sizeof(arr)/sizeof(int));
 
 // 	for (int test = 0; test < 5000; test++)
@@ -99,7 +101,6 @@ int _tmain(int argc, _TCHAR* argv[])
 // 			break;
 // 		}
 // 	}
-	printf("Quick sort succeeded.\n");
 	return 0;
 }
 
